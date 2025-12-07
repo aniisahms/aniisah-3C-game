@@ -5,11 +5,6 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    // // Start is called before the first frame update
-    // void Start()
-    // {
-        
-    // }
 
     // event fields
     public Action<Vector2> OnMoveInput;
@@ -22,6 +17,7 @@ public class InputManager : MonoBehaviour
     public Action OnGlideInput;
     public Action OnCancelGlide;
     public Action OnPunchInput;
+    public Action OnMainMenuInput;
 
     // Update is called once per frame
     void Update()
@@ -145,7 +141,10 @@ public class InputManager : MonoBehaviour
         bool isPressMainMenuInput = Input.GetKeyDown(KeyCode.Escape);
         if(isPressMainMenuInput)
         {
-            Debug.Log("Back to main menu");
+            if(OnMainMenuInput != null)
+            {
+                OnMainMenuInput();
+            }
         }
     }
 }
